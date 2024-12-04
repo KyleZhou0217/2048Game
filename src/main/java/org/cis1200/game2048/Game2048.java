@@ -7,8 +7,8 @@ import java.util.Random;
 
 public class Game2048 {
 
-    public Square[][] gameBoard;
-    public LinkedList<Square[][]> boardVersions;
+    private Square[][] gameBoard;
+    private LinkedList<Square[][]> boardVersions;
     private BufferedImage boardImg;
     private boolean lost;
     private boolean won;
@@ -19,6 +19,14 @@ public class Game2048 {
      */
     public Game2048() {
         reset();
+    }
+
+    public Square[][] getGameBoard() {
+        return gameBoard;
+    }
+
+    public LinkedList<Square[][]> getBoardVersions() {
+        return boardVersions;
     }
 
     public boolean checkWin() {

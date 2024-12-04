@@ -26,6 +26,24 @@ import javax.swing.*;
  */
 public class RunGame2048 implements Runnable {
     public void run() {
+        final JFrame frame = new JFrame("Game 2048 Main Menu");
+        frame.setLocation(300,300);
+        final JPanel control_panel = new JPanel();
+        frame.add(control_panel, BorderLayout.NORTH);
+        final JButton newGame = new JButton("New Game");
+        newGame.addActionListener(e -> {run1(); frame.dispose();});
+        final JButton save1 = new JButton("Save 1");
+        final JButton save2 = new JButton("Save 2");
+        final JButton save3 = new JButton("Save 3");
+        control_panel.add(newGame);
+        control_panel.add(save1);
+        control_panel.add(save2);
+        control_panel.add(save3);
+        frame.pack();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+    public void run1() {
         // NOTE: the 'final' keyword denotes immutability even for local variables.
 
         // Top-level frame in which game components live
@@ -55,8 +73,11 @@ public class RunGame2048 implements Runnable {
 
         final JButton undo = new JButton("Undo");
         undo.addActionListener(e -> board.undo());
+        final JButton mainMenu = new JButton("Main Menu");
+        mainMenu.addActionListener(e -> {run(); frame.dispose();});
         control_panel.add(reset);
         control_panel.add(undo);
+        control_panel.add(mainMenu);
         // Put the frame on the screen
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

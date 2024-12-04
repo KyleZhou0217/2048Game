@@ -38,22 +38,22 @@ public class GameBoard extends JPanel {
         addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    tfe.boardVersions.addFirst(deepCopy(tfe.gameBoard));
+                    tfe.getBoardVersions().addFirst(deepCopy(tfe.getGameBoard()));
                     tfe.changeBoard(Direction.LEFT);
                     endOfRoundUpdate();
                     repaint();
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    tfe.boardVersions.addFirst(deepCopy(tfe.gameBoard));
+                    tfe.getBoardVersions().addFirst(deepCopy(tfe.getGameBoard()));
                     tfe.changeBoard(Direction.RIGHT);
                     endOfRoundUpdate();
                     repaint();
                 } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                    tfe.boardVersions.addFirst(deepCopy(tfe.gameBoard));
+                    tfe.getBoardVersions().addFirst(deepCopy(tfe.getGameBoard()));
                     tfe.changeBoard(Direction.DOWN);
                     endOfRoundUpdate();
                     repaint();
                 } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-                    tfe.boardVersions.addFirst(deepCopy(tfe.gameBoard));
+                    tfe.getBoardVersions().addFirst(deepCopy(tfe.getGameBoard()));
                     tfe.changeBoard(Direction.UP);
                     endOfRoundUpdate();
                     repaint();
@@ -144,8 +144,8 @@ public class GameBoard extends JPanel {
         }
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                if (tfe.gameBoard[i][j] != null){
-                    tfe.gameBoard[i][j].draw(g);
+                if (tfe.getGameBoard()[i][j] != null){
+                    tfe.getGameBoard()[i][j].draw(g);
                 }
             }
         }

@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
+import java.util.Arrays;
 
 
 public class GameBoard extends JPanel {
@@ -37,21 +38,27 @@ public class GameBoard extends JPanel {
         addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    tfe.boardVersions.addFirst(deepCopy(tfe.gameBoard));
                     tfe.changeBoard(Direction.LEFT);
                     endOfRoundUpdate();
                     repaint();
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    tfe.boardVersions.addFirst(deepCopy(tfe.gameBoard));
                     tfe.changeBoard(Direction.RIGHT);
                     endOfRoundUpdate();
                     repaint();
                 } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                   tfe.changeBoard(Direction.DOWN);
-                   endOfRoundUpdate();
-                   repaint();
+                    tfe.boardVersions.addFirst(deepCopy(tfe.gameBoard));
+                    tfe.changeBoard(Direction.DOWN);
+                    endOfRoundUpdate();
+                    repaint();
                 } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    tfe.boardVersions.addFirst(deepCopy(tfe.gameBoard));
                     tfe.changeBoard(Direction.UP);
                     endOfRoundUpdate();
                     repaint();
+                } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    undo();
                 }
             }
         });
@@ -66,6 +73,12 @@ public class GameBoard extends JPanel {
         repaint();
 
         // Makes sure this component has keyboard/mouse focus
+        requestFocusInWindow();
+    }
+
+    public void undo() {
+        tfe.undo();
+        repaint();
         requestFocusInWindow();
     }
 
@@ -138,6 +151,20 @@ public class GameBoard extends JPanel {
         }
     }
 
+
+    private static Square[][] deepCopy(Square[][] board) {
+        Square[][] copiedBoard = new Square[4][4];
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (board[i][j] != null) {
+                    copiedBoard[i][j] = new Square(board[i][j].getX(), board[i][j].getY(), board[i][j].getNumber());
+                } else {
+                    copiedBoard[i][j] = null;
+                }
+            }
+        }
+        return copiedBoard;
+    }
     /**
      * Returns the size of the game board.
      */

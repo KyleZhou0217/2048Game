@@ -52,8 +52,11 @@ public class RunGame2048 implements Runnable {
         // button is pressed, actionPerformed() will be called.
         final JButton reset = new JButton("Reset");
         reset.addActionListener(e -> board.reset());
-        control_panel.add(reset);
 
+        final JButton undo = new JButton("Undo");
+        undo.addActionListener(e -> board.undo());
+        control_panel.add(reset);
+        control_panel.add(undo);
         // Put the frame on the screen
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

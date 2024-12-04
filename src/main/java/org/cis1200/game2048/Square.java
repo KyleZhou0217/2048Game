@@ -47,6 +47,14 @@ public class Square {
         return MOVE_SPD;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     public void setX(int col) {
         x = Square.getWidth() * col + GameBoard.SPACE * (col + 1);
     }

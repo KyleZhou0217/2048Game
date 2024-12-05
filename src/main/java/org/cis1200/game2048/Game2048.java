@@ -15,8 +15,10 @@ public class Game2048 {
         reset();
     }
 
+    //for JUnit testing
     public Game2048(int[][] board) {
         gameBoard = new Square[4][4];
+        boardVersions = new LinkedList<Square[][]>();
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 if (board[i][j] == 0) {
@@ -92,6 +94,7 @@ public class Game2048 {
 
     public void changeBoard(Direction d){
         if (d == Direction.UP) {
+            boardVersions.addFirst(deepCopy(gameBoard));
             for (int j = 0; j < 4; j++){
                 for (int i = 0; i < 3; i++) {
                     if (gameBoard[i][j] == null) {
@@ -134,6 +137,7 @@ public class Game2048 {
             }
         }
         else if (d == Direction.DOWN) {
+            boardVersions.addFirst(deepCopy(gameBoard));
             for (int j = 0; j < 4; j++){
                 for (int i = 3; i > 0; i--) {
                     if (gameBoard[i][j] == null) {
@@ -175,6 +179,7 @@ public class Game2048 {
                 }
             }
         } else if (d == Direction.LEFT) {
+            boardVersions.addFirst(deepCopy(gameBoard));
             for (int j = 0; j < 4; j++){
                 for (int i = 0; i < 3; i++) {
                     if (gameBoard[j][i] == null) {
@@ -216,6 +221,7 @@ public class Game2048 {
                 }
             }
         } else if (d == Direction.RIGHT) {
+            boardVersions.addFirst(deepCopy(gameBoard));
             for (int j = 0; j < 4; j++){
                 for (int i = 3; i > 0; i--) {
                     if (gameBoard[j][i] == null) {
@@ -309,11 +315,26 @@ public class Game2048 {
         }
     }
 
+    private static Square[][] deepCopy(Square[][] board) {
+        Square[][] copiedBoard = new Square[4][4];
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (board[i][j] != null) {
+                    copiedBoard[i][j] = new Square(board[i][j].getX(), board[i][j].getY(), board[i][j].getNumber());
+                } else {
+                    copiedBoard[i][j] = null;
+                }
+            }
+        }
+        return copiedBoard;
+    }
+
+    //for JUnit testing
     public int[][] getBoardIntArray() {
         int[][] board = new int[4][4];
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                if (gameBoard[j][i] != null) {
+                if (gameBoard[i][j] != null) {
                     board[i][j] = gameBoard[i][j].getNumber();
                 }
             }

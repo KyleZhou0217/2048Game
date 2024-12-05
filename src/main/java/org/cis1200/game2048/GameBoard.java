@@ -33,28 +33,24 @@ public class GameBoard extends JPanel {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     if (!tfe.checkLoss() && !tfe.checkWin()) {
-                        tfe.getBoardVersions().addFirst(deepCopy(tfe.getGameBoard()));
                         tfe.changeBoard(Direction.LEFT);
                         endOfRoundUpdate();
                         repaint();
                     }
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     if (!tfe.checkLoss() && !tfe.checkWin()) {
-                        tfe.getBoardVersions().addFirst(deepCopy(tfe.getGameBoard()));
                         tfe.changeBoard(Direction.RIGHT);
                         endOfRoundUpdate();
                         repaint();
                     }
                 } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                     if (!tfe.checkLoss() && !tfe.checkWin()) {
-                        tfe.getBoardVersions().addFirst(deepCopy(tfe.getGameBoard()));
                         tfe.changeBoard(Direction.DOWN);
                         endOfRoundUpdate();
                         repaint();
                     }
                 } else if (e.getKeyCode() == KeyEvent.VK_UP) {
                     if (!tfe.checkLoss() && !tfe.checkWin()) {
-                        tfe.getBoardVersions().addFirst(deepCopy(tfe.getGameBoard()));
                         tfe.changeBoard(Direction.UP);
                         endOfRoundUpdate();
                         repaint();
@@ -160,20 +156,6 @@ public class GameBoard extends JPanel {
         }
     }
 
-
-    private static Square[][] deepCopy(Square[][] board) {
-        Square[][] copiedBoard = new Square[4][4];
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                if (board[i][j] != null) {
-                    copiedBoard[i][j] = new Square(board[i][j].getX(), board[i][j].getY(), board[i][j].getNumber());
-                } else {
-                    copiedBoard[i][j] = null;
-                }
-            }
-        }
-        return copiedBoard;
-    }
     /**
      * Returns the size of the game board.
      */

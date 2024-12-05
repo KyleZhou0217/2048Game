@@ -28,13 +28,19 @@ public class RunGame2048 implements Runnable {
     public void run() {
         final JFrame frame = new JFrame("Game 2048 Main Menu");
         frame.setLocation(300,300);
+
+        final GameBoard board = new GameBoard();
+
         final JPanel control_panel = new JPanel();
         frame.add(control_panel, BorderLayout.NORTH);
         final JButton newGame = new JButton("New Game");
-        newGame.addActionListener(e -> {run1(); frame.dispose();});
+        newGame.addActionListener(e -> {run1(board); board.reset(); frame.dispose();});
         final JButton save1 = new JButton("Save 1");
+        save1.addActionListener(e -> {run1(board); board.load(1); frame.dispose();});
         final JButton save2 = new JButton("Save 2");
+        save2.addActionListener(e -> {run1(board); board.load(2); frame.dispose();});
         final JButton save3 = new JButton("Save 3");
+        save3.addActionListener(e -> {run1(board); board.load(3); frame.dispose();});
         control_panel.add(newGame);
         control_panel.add(save1);
         control_panel.add(save2);
@@ -43,21 +49,20 @@ public class RunGame2048 implements Runnable {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
-    public void run1() {
+    public void run1(GameBoard board) {
         // NOTE: the 'final' keyword denotes immutability even for local variables.
 
         // Top-level frame in which game components live
         final JFrame frame = new JFrame("2048");
         frame.setLocation(300, 300);
 
-        // Status panel
+        //status
         final JPanel status_panel = new JPanel();
         frame.add(status_panel, BorderLayout.SOUTH);
-        final JLabel status = new JLabel("Setting up...");
+        final JLabel status = new JLabel("Game in Progress");
         status_panel.add(status);
-
+        board.setStatus(status);
         // Game board
-        final GameBoard board = new GameBoard(status);
         frame.add(board, BorderLayout.CENTER);
 
         // Reset button
@@ -75,6 +80,15 @@ public class RunGame2048 implements Runnable {
         undo.addActionListener(e -> board.undo());
         final JButton mainMenu = new JButton("Main Menu");
         mainMenu.addActionListener(e -> {run(); frame.dispose();});
+        final JButton save1 = new JButton("Save 1");
+        save1.addActionListener(e -> {board.save(1); run(); frame.dispose();});
+        final JButton save2 = new JButton("Save 2");
+        save2.addActionListener(e -> {board.save(2); run(); frame.dispose();});
+        final JButton save3 = new JButton("Save 3");
+        save3.addActionListener(e -> {board.save(3); run(); frame.dispose();});
+        control_panel.add(save1);
+        control_panel.add(save2);
+        control_panel.add(save3);
         control_panel.add(reset);
         control_panel.add(undo);
         control_panel.add(mainMenu);
@@ -82,8 +96,5 @@ public class RunGame2048 implements Runnable {
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-
-        // Start the game
-        board.reset();
     }
 }

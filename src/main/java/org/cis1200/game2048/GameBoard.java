@@ -22,7 +22,7 @@ public class GameBoard extends JPanel {
     /**
      * Initializes the game board.
      */
-    public GameBoard(JLabel statusInit) {
+    public GameBoard() {
         // creates border around the court area, JComponent method
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
@@ -31,7 +31,6 @@ public class GameBoard extends JPanel {
         setFocusable(true);
 
         tfe = new Game2048(); // initializes model for the game
-        status = statusInit; // initializes the status JLabel
 //        boardImg = new BufferedImage(BOARD_WIDTH, BOARD_HEIGHT, BufferedImage.TYPE_INT_RGB);
 //        gameBoard = new Square[4][4];
 
@@ -64,12 +63,15 @@ public class GameBoard extends JPanel {
         });
     }
 
+    public void setStatus(JLabel status) {
+        this.status = status;
+    }
     /**
      * (Re-)sets the game to its initial state.
      */
     public void reset() {
         tfe.reset();
-        status.setText("Player 1's Turn");
+        status.setText("Game in Progress");
         repaint();
 
         // Makes sure this component has keyboard/mouse focus
@@ -95,6 +97,30 @@ public class GameBoard extends JPanel {
                 }
             }
         }
+    }
+
+    public void save(int number) {
+        GameSaverLoader saver = new GameSaverLoader();
+        if (number == 1) {
+            saver.saveGame("save1.txt", tfe.getGameBoard());
+        } else if (number == 2) {
+            saver.saveGame("save2.txt", tfe.getGameBoard());
+        } else if (number == 3) {
+            saver.saveGame("save3.txt", tfe.getGameBoard());
+        }
+        requestFocusInWindow();
+    }
+
+    public void load(int number) {
+        GameSaverLoader loader = new GameSaverLoader();
+        if (number == 1) {
+            tfe.setGameBoard(loader.loadGame("save1.txt"));
+        } else if (number == 2) {
+            tfe.setGameBoard(loader.loadGame("save2.txt"));
+        } else if (number == 3) {
+            tfe.setGameBoard(loader.loadGame("save3.txt"));
+        }
+        requestFocusInWindow();
     }
 
 //

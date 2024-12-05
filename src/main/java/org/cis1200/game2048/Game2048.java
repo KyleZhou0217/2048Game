@@ -25,6 +25,10 @@ public class Game2048 {
         return gameBoard;
     }
 
+    public void setGameBoard(Square[][] gameBoard) {
+        this.gameBoard = gameBoard;
+    }
+
     public LinkedList<Square[][]> getBoardVersions() {
         return boardVersions;
     }

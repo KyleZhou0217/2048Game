@@ -1,7 +1,5 @@
 package org.cis1200.game2048;
 
-
-import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -9,10 +7,6 @@ public class Game2048 {
 
     private Square[][] gameBoard;
     private LinkedList<Square[][]> boardVersions;
-    private BufferedImage boardImg;
-    private boolean lost;
-    private boolean won;
-    private int score;
 
     /**
      * Constructor sets up game state.
@@ -252,7 +246,6 @@ public class Game2048 {
 
     public void reset() {
         gameBoard = new Square[4][4];
-        score = 0;
         boardVersions = new LinkedList<Square[][]>();
         for (int i = 0; i < 2; i++) {
             boolean done = false;
@@ -300,9 +293,6 @@ public class Game2048 {
             gameBoard = boardVersions.removeFirst();
         }
     }
-
-
-
 
     public static void main(String[] args) {
 

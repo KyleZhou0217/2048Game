@@ -1,17 +1,14 @@
 package org.cis1200.game2048;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
 import java.util.Map;
 
 public class Square {
     private static final int HEIGHT = 120;
     private static final int WIDTH = 120;
-    private static final int MOVE_SPD = 25;
     private int x;
     private int y;
     private int number;
-    private static BufferedImage img;
 
     private static final Map<Integer, Tuple> TILE_PEN_COLORS = Map.ofEntries(
             Map.entry(2, new Tuple(0x000000, 0xeee4da)),
@@ -32,7 +29,6 @@ public class Square {
         this.x = x;
         this.y = y;
         this.number = number;
-        img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     }
 
     public static int getHeight() {
@@ -43,9 +39,6 @@ public class Square {
         return WIDTH;
     }
 
-    public static int getMoveSpeed() {
-        return MOVE_SPD;
-    }
 
     public int getX() {
         return x;

@@ -3,8 +3,6 @@ package org.cis1200.game2048;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.awt.image.BufferedImage;
-import java.util.Arrays;
 
 
 public class GameBoard extends JPanel {
@@ -16,7 +14,6 @@ public class GameBoard extends JPanel {
     public static final int SPACE = 15;
     public static final int BOARD_WIDTH = 4 * Square.getWidth() + SPACE * 5;
     public static final int BOARD_HEIGHT = 4 * Square.getHeight() + SPACE * 5;
-
 
 
     /**
@@ -31,8 +28,6 @@ public class GameBoard extends JPanel {
         setFocusable(true);
 
         tfe = new Game2048(); // initializes model for the game
-//        boardImg = new BufferedImage(BOARD_WIDTH, BOARD_HEIGHT, BufferedImage.TYPE_INT_RGB);
-//        gameBoard = new Square[4][4];
 
         addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
@@ -131,27 +126,6 @@ public class GameBoard extends JPanel {
         }
         requestFocusInWindow();
     }
-
-//
-//    /**
-//     * Updates the JLabel to reflect the current state of the game.
-//     */
-//    private void updateStatus() {
-//        if (ttt.getCurrentPlayer()) {
-//            status.setText("Player 1's Turn");
-//        } else {
-//            status.setText("Player 2's Turn");
-//        }
-//
-//        int winner = ttt.checkWinner();
-//        if (winner == 1) {
-//            status.setText("Player 1 wins!!!");
-//        } else if (winner == 2) {
-//            status.setText("Player 2 wins!!!");
-//        } else if (winner == 3) {
-//            status.setText("It's a tie.");
-//        }
-//    }
 
     /**
      * Draws the game board.

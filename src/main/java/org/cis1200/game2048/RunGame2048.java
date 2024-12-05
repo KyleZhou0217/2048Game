@@ -29,6 +29,11 @@ public class RunGame2048 implements Runnable {
         final JFrame frame = new JFrame("Game 2048 Main Menu");
         frame.setLocation(300,300);
 
+        final JPanel status_panel = new JPanel();
+        frame.add(status_panel, BorderLayout.SOUTH);
+        final JLabel status = new JLabel("Instructions: ");
+        status_panel.add(status);
+
         final GameBoard board = new GameBoard();
 
         final JPanel control_panel = new JPanel();

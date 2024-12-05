@@ -15,6 +15,21 @@ public class Game2048 {
         reset();
     }
 
+    public Game2048(int[][] board) {
+        gameBoard = new Square[4][4];
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (board[i][j] == 0) {
+                    gameBoard[i][j] = null;
+                } else {
+                    gameBoard[i][j] = new Square(0,0,board[i][j]);
+                    gameBoard[i][j].setX(j);
+                    gameBoard[i][j].setY(i);
+                }
+            }
+        }
+    }
+
     public Square[][] getGameBoard() {
         return gameBoard;
     }
@@ -292,6 +307,18 @@ public class Game2048 {
         if (!boardVersions.isEmpty()) {
             gameBoard = boardVersions.removeFirst();
         }
+    }
+
+    public int[][] getBoardIntArray() {
+        int[][] board = new int[4][4];
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (gameBoard[j][i] != null) {
+                    board[i][j] = gameBoard[i][j].getNumber();
+                }
+            }
+        }
+        return board;
     }
 
     public static void main(String[] args) {

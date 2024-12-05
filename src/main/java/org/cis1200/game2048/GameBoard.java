@@ -37,25 +37,33 @@ public class GameBoard extends JPanel {
         addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    tfe.getBoardVersions().addFirst(deepCopy(tfe.getGameBoard()));
-                    tfe.changeBoard(Direction.LEFT);
-                    endOfRoundUpdate();
-                    repaint();
+                    if (!tfe.checkLoss() && !tfe.checkWin()) {
+                        tfe.getBoardVersions().addFirst(deepCopy(tfe.getGameBoard()));
+                        tfe.changeBoard(Direction.LEFT);
+                        endOfRoundUpdate();
+                        repaint();
+                    }
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    tfe.getBoardVersions().addFirst(deepCopy(tfe.getGameBoard()));
-                    tfe.changeBoard(Direction.RIGHT);
-                    endOfRoundUpdate();
-                    repaint();
+                    if (!tfe.checkLoss() && !tfe.checkWin()) {
+                        tfe.getBoardVersions().addFirst(deepCopy(tfe.getGameBoard()));
+                        tfe.changeBoard(Direction.RIGHT);
+                        endOfRoundUpdate();
+                        repaint();
+                    }
                 } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                    tfe.getBoardVersions().addFirst(deepCopy(tfe.getGameBoard()));
-                    tfe.changeBoard(Direction.DOWN);
-                    endOfRoundUpdate();
-                    repaint();
+                    if (!tfe.checkLoss() && !tfe.checkWin()) {
+                        tfe.getBoardVersions().addFirst(deepCopy(tfe.getGameBoard()));
+                        tfe.changeBoard(Direction.DOWN);
+                        endOfRoundUpdate();
+                        repaint();
+                    }
                 } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-                    tfe.getBoardVersions().addFirst(deepCopy(tfe.getGameBoard()));
-                    tfe.changeBoard(Direction.UP);
-                    endOfRoundUpdate();
-                    repaint();
+                    if (!tfe.checkLoss() && !tfe.checkWin()) {
+                        tfe.getBoardVersions().addFirst(deepCopy(tfe.getGameBoard()));
+                        tfe.changeBoard(Direction.UP);
+                        endOfRoundUpdate();
+                        repaint();
+                    }
                 } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                     undo();
                 }
@@ -80,6 +88,7 @@ public class GameBoard extends JPanel {
 
     public void undo() {
         tfe.undo();
+        status.setText("Game in Progress");
         repaint();
         requestFocusInWindow();
     }

@@ -5,8 +5,8 @@ import java.awt.image.BufferedImage;
 import java.util.Map;
 
 public class Square {
-    private static final int HEIGHT = 64;
-    private static final int WIDTH = 64;
+    private static final int HEIGHT = 120;
+    private static final int WIDTH = 120;
     private static final int MOVE_SPD = 25;
     private int x;
     private int y;
@@ -74,10 +74,10 @@ public class Square {
         g.setColor(new Color((int) TILE_PEN_COLORS.get(number).getB()));
         g.fillRect(x, y, WIDTH, HEIGHT);
         g.setColor(new Color((int) TILE_PEN_COLORS.get(number).getA()));
-        g.setFont(new Font("Clear Sans", Font.BOLD, 24));
+        g.setFont(new Font("Clear Sans", Font.BOLD, 40));
         Rectangle2D border = g.getFontMetrics().getStringBounds(String.valueOf(number), g);
         g.drawString("" + number, x + (WIDTH - (int) border.getWidth())/ 2,
-                y + HEIGHT / 2 + 6);
+                y + HEIGHT / 2 + 12);
 
     }
 }

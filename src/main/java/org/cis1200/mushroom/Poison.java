@@ -25,8 +25,6 @@ public class Poison extends GameObj {
 
     private static BufferedImage img;
 
-
-
     public Poison(int courtWidth, int courtHeight) {
         super(INIT_VEL_X, INIT_VEL_Y, INIT_POS_X, INIT_POS_Y, SIZE, SIZE, courtWidth, courtHeight);
 

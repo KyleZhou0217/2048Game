@@ -1,4 +1,5 @@
 package org.cis1200.game2048;
+
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
@@ -24,7 +25,6 @@ public class Square {
             Map.entry(2048, new Tuple(0xffffff, 0xedc22e))
     );
 
-
     public Square(int x, int y, int number) {
         this.x = x;
         this.y = y;
@@ -38,7 +38,6 @@ public class Square {
     public static int getWidth() {
         return WIDTH;
     }
-
 
     public int getX() {
         return x;
@@ -63,14 +62,17 @@ public class Square {
     public void setNumber(int number) {
         this.number = number;
     }
+
     public void draw(Graphics g) {
         g.setColor(new Color((int) TILE_PEN_COLORS.get(number).getB()));
         g.fillRect(x, y, WIDTH, HEIGHT);
         g.setColor(new Color((int) TILE_PEN_COLORS.get(number).getA()));
         g.setFont(new Font("Clear Sans", Font.BOLD, 40));
         Rectangle2D border = g.getFontMetrics().getStringBounds(String.valueOf(number), g);
-        g.drawString("" + number, x + (WIDTH - (int) border.getWidth())/ 2,
-                y + HEIGHT / 2 + 12);
+        g.drawString(
+                "" + number, x + (WIDTH - (int) border.getWidth()) / 2,
+                y + HEIGHT / 2 + 12
+        );
 
     }
 }

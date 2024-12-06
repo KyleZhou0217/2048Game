@@ -1,6 +1,6 @@
 package org.cis1200.game2048;
-import java.io.*;
 
+import java.io.*;
 
 public class GameSaverLoader {
 
@@ -37,7 +37,7 @@ public class GameSaverLoader {
                     if (Integer.parseInt(values[j]) == 0) {
                         board[i][j] = null;
                     } else {
-                        board[i][j] = new Square(0,0,Integer.parseInt(values[j]));
+                        board[i][j] = new Square(0, 0, Integer.parseInt(values[j]));
                         board[i][j].setX(j);
                         board[i][j].setY(i);
                     }
@@ -48,6 +48,5 @@ public class GameSaverLoader {
         }
         return board;
     }
-
 
 }

@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-
 public class GameBoard extends JPanel {
 
     private Game2048 tfe; // model for the game
@@ -14,7 +13,6 @@ public class GameBoard extends JPanel {
     public static final int SPACE = 15;
     public static final int BOARD_WIDTH = 4 * Square.getWidth() + SPACE * 5;
     public static final int BOARD_HEIGHT = 4 * Square.getHeight() + SPACE * 5;
-
 
     /**
      * Initializes the game board.
@@ -65,6 +63,7 @@ public class GameBoard extends JPanel {
     public void setStatus(JLabel status) {
         this.status = status;
     }
+
     /**
      * (Re-)sets the game to its initial state.
      */
@@ -157,14 +156,16 @@ public class GameBoard extends JPanel {
         g.setColor(new Color(205, 192, 176));
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                g.fillRect(Square.getWidth() * j + SPACE * (j + 1),
+                g.fillRect(
+                        Square.getWidth() * j + SPACE * (j + 1),
                         Square.getHeight() * i + SPACE * (i + 1),
-                        Square.getWidth(), Square.getHeight());
+                        Square.getWidth(), Square.getHeight()
+                );
             }
         }
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                if (tfe.getGameBoard()[i][j] != null){
+                if (tfe.getGameBoard()[i][j] != null) {
                     tfe.getGameBoard()[i][j].draw(g);
                 }
             }

@@ -15,7 +15,7 @@ public class Game2048 {
         reset();
     }
 
-    //for JUnit testing
+    // for JUnit testing
     public Game2048(int[][] board) {
         gameBoard = new Square[4][4];
         boardVersions = new LinkedList<Square[][]>();
@@ -24,7 +24,7 @@ public class Game2048 {
                 if (board[i][j] == 0) {
                     gameBoard[i][j] = null;
                 } else {
-                    gameBoard[i][j] = new Square(0,0,board[i][j]);
+                    gameBoard[i][j] = new Square(0, 0, board[i][j]);
                     gameBoard[i][j].setX(j);
                     gameBoard[i][j].setY(i);
                 }
@@ -45,8 +45,8 @@ public class Game2048 {
     }
 
     public boolean checkWin() {
-        for (int i = 0; i < 4; i++){
-            for (int j = 0; j < 4; j++){
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
                 if (gameBoard[i][j] != null) {
                     if (gameBoard[i][j].getNumber() == 2048) {
                         return true;
@@ -58,32 +58,33 @@ public class Game2048 {
     }
 
     public boolean checkLoss() {
-        for (int i = 0; i < 4; i++){
-            for (int j = 0; j < 4; j++){
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
                 if (gameBoard[i][j] == null) {
                     return false;
                 }
             }
         }
-        for (int i = 0; i < 3; i++){
-            for (int j = 0; j < 4; j++){
-                if (gameBoard[j][i].getNumber() == gameBoard[j][i+1].getNumber()) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (gameBoard[j][i].getNumber() == gameBoard[j][i + 1].getNumber()) {
                     return false;
                 }
             }
         }
-        for (int i = 0; i < 4; i++){
-            for (int j = 0; j < 3; j++){
-                if (gameBoard[j][i].getNumber() == gameBoard[j+1][i].getNumber()) {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (gameBoard[j][i].getNumber() == gameBoard[j + 1][i].getNumber()) {
                     return false;
                 }
             }
         }
         return true;
     }
+
     public boolean checkBoardFull() {
-        for (int i = 0; i < 4; i++){
-            for (int j = 0; j < 4; j++){
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
                 if (gameBoard[i][j] == null) {
                     return false;
                 }
@@ -92,10 +93,10 @@ public class Game2048 {
         return true;
     }
 
-    public void changeBoard(Direction d){
+    public void changeBoard(Direction d) {
         if (d == Direction.UP) {
             boardVersions.addFirst(deepCopy(gameBoard));
-            for (int j = 0; j < 4; j++){
+            for (int j = 0; j < 4; j++) {
                 for (int i = 0; i < 3; i++) {
                     if (gameBoard[i][j] == null) {
                         for (int k = i + 1; k < 4; k++) {
@@ -110,17 +111,17 @@ public class Game2048 {
                     }
                 }
             }
-            for (int j = 0; j < 4; j++){
-                for (int i = 0; i < 3; i ++){
-                    if (gameBoard[i][j] != null && gameBoard[i+1][j] != null) {
-                        if (gameBoard[i][j].getNumber() == gameBoard[i+1][j].getNumber()) {
+            for (int j = 0; j < 4; j++) {
+                for (int i = 0; i < 3; i++) {
+                    if (gameBoard[i][j] != null && gameBoard[i + 1][j] != null) {
+                        if (gameBoard[i][j].getNumber() == gameBoard[i + 1][j].getNumber()) {
                             gameBoard[i][j].setNumber(gameBoard[i][j].getNumber() * 2);
-                            gameBoard[i+1][j] = null;
+                            gameBoard[i + 1][j] = null;
                         }
                     }
                 }
             }
-            for (int j = 0; j < 4; j++){
+            for (int j = 0; j < 4; j++) {
                 for (int i = 0; i < 3; i++) {
                     if (gameBoard[i][j] == null) {
                         for (int k = i + 1; k < 4; k++) {
@@ -135,10 +136,9 @@ public class Game2048 {
                     }
                 }
             }
-        }
-        else if (d == Direction.DOWN) {
+        } else if (d == Direction.DOWN) {
             boardVersions.addFirst(deepCopy(gameBoard));
-            for (int j = 0; j < 4; j++){
+            for (int j = 0; j < 4; j++) {
                 for (int i = 3; i > 0; i--) {
                     if (gameBoard[i][j] == null) {
                         for (int k = i - 1; k >= 0; k--) {
@@ -153,17 +153,17 @@ public class Game2048 {
                     }
                 }
             }
-            for (int j = 0; j < 4; j++){
-                for (int i = 3; i > 0; i --){
-                    if (gameBoard[i][j] != null && gameBoard[i-1][j] != null) {
-                        if (gameBoard[i][j].getNumber() == gameBoard[i-1][j].getNumber()) {
+            for (int j = 0; j < 4; j++) {
+                for (int i = 3; i > 0; i--) {
+                    if (gameBoard[i][j] != null && gameBoard[i - 1][j] != null) {
+                        if (gameBoard[i][j].getNumber() == gameBoard[i - 1][j].getNumber()) {
                             gameBoard[i][j].setNumber(gameBoard[i][j].getNumber() * 2);
-                            gameBoard[i-1][j] = null;
+                            gameBoard[i - 1][j] = null;
                         }
                     }
                 }
             }
-            for (int j = 0; j < 4; j++){
+            for (int j = 0; j < 4; j++) {
                 for (int i = 3; i > 0; i--) {
                     if (gameBoard[i][j] == null) {
                         for (int k = i - 1; k >= 0; k--) {
@@ -180,7 +180,7 @@ public class Game2048 {
             }
         } else if (d == Direction.LEFT) {
             boardVersions.addFirst(deepCopy(gameBoard));
-            for (int j = 0; j < 4; j++){
+            for (int j = 0; j < 4; j++) {
                 for (int i = 0; i < 3; i++) {
                     if (gameBoard[j][i] == null) {
                         for (int k = i + 1; k < 4; k++) {
@@ -195,17 +195,17 @@ public class Game2048 {
                     }
                 }
             }
-            for (int j = 0; j < 4; j++){
-                for (int i = 0; i < 3; i ++){
-                    if (gameBoard[j][i] != null && gameBoard[j][i+1] != null) {
-                        if (gameBoard[j][i].getNumber() == gameBoard[j][i+1].getNumber()) {
+            for (int j = 0; j < 4; j++) {
+                for (int i = 0; i < 3; i++) {
+                    if (gameBoard[j][i] != null && gameBoard[j][i + 1] != null) {
+                        if (gameBoard[j][i].getNumber() == gameBoard[j][i + 1].getNumber()) {
                             gameBoard[j][i].setNumber(gameBoard[j][i].getNumber() * 2);
-                            gameBoard[j][i+1] = null;
+                            gameBoard[j][i + 1] = null;
                         }
                     }
                 }
             }
-            for (int j = 0; j < 4; j++){
+            for (int j = 0; j < 4; j++) {
                 for (int i = 0; i < 3; i++) {
                     if (gameBoard[j][i] == null) {
                         for (int k = i + 1; k < 4; k++) {
@@ -222,7 +222,7 @@ public class Game2048 {
             }
         } else if (d == Direction.RIGHT) {
             boardVersions.addFirst(deepCopy(gameBoard));
-            for (int j = 0; j < 4; j++){
+            for (int j = 0; j < 4; j++) {
                 for (int i = 3; i > 0; i--) {
                     if (gameBoard[j][i] == null) {
                         for (int k = i - 1; k >= 0; k--) {
@@ -237,17 +237,17 @@ public class Game2048 {
                     }
                 }
             }
-            for (int j = 0; j < 4; j++){
-                for (int i = 3; i > 0; i --){
-                    if (gameBoard[j][i] != null && gameBoard[j][i-1] != null) {
-                        if (gameBoard[j][i].getNumber() == gameBoard[j][i-1].getNumber()) {
+            for (int j = 0; j < 4; j++) {
+                for (int i = 3; i > 0; i--) {
+                    if (gameBoard[j][i] != null && gameBoard[j][i - 1] != null) {
+                        if (gameBoard[j][i].getNumber() == gameBoard[j][i - 1].getNumber()) {
                             gameBoard[j][i].setNumber(gameBoard[j][i].getNumber() * 2);
-                            gameBoard[j][i-1] = null;
+                            gameBoard[j][i - 1] = null;
                         }
                     }
                 }
             }
-            for (int j = 0; j < 4; j++){
+            for (int j = 0; j < 4; j++) {
                 for (int i = 3; i > 0; i--) {
                     if (gameBoard[j][i] == null) {
                         for (int k = i - 1; k >= 0; k--) {
@@ -281,8 +281,10 @@ public class Game2048 {
                     value = 4;
                 }
                 if (gameBoard[row][col] == null) {
-                    gameBoard[row][col] = new Square(Square.getWidth() * col + GameBoard.SPACE * (col + 1),
-                            Square.getHeight() * row + GameBoard.SPACE * (row + 1), value);
+                    gameBoard[row][col] = new Square(
+                            Square.getWidth() * col + GameBoard.SPACE * (col + 1),
+                            Square.getHeight() * row + GameBoard.SPACE * (row + 1), value
+                    );
                     done = true;
                 }
             }
@@ -302,8 +304,10 @@ public class Game2048 {
                 value = 4;
             }
             if (gameBoard[row][col] == null) {
-                gameBoard[row][col] = new Square(Square.getWidth() * col + GameBoard.SPACE * (col + 1),
-                        Square.getHeight() * row + GameBoard.SPACE * (row + 1), value);
+                gameBoard[row][col] = new Square(
+                        Square.getWidth() * col + GameBoard.SPACE * (col + 1),
+                        Square.getHeight() * row + GameBoard.SPACE * (row + 1), value
+                );
                 done = true;
             }
         }
@@ -320,7 +324,9 @@ public class Game2048 {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 if (board[i][j] != null) {
-                    copiedBoard[i][j] = new Square(board[i][j].getX(), board[i][j].getY(), board[i][j].getNumber());
+                    copiedBoard[i][j] = new Square(
+                            board[i][j].getX(), board[i][j].getY(), board[i][j].getNumber()
+                    );
                 } else {
                     copiedBoard[i][j] = null;
                 }
@@ -329,7 +335,7 @@ public class Game2048 {
         return copiedBoard;
     }
 
-    //for JUnit testing
+    // for JUnit testing
     public int[][] getBoardIntArray() {
         int[][] board = new int[4][4];
         for (int i = 0; i < 4; i++) {

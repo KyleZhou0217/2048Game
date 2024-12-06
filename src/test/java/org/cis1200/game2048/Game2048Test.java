@@ -266,5 +266,177 @@ public class Game2048Test {
         assertArrayEquals(initBoard, tfe.getBoardIntArray());
     }
 
+    @Test
+    public void testChangeBoardLeft1() {
+        int[][] initBoard = new int[][]{
+                {4, 4, 64, 2},
+                {0, 2, 8, 4},
+                {0, 4, 2, 16},
+                {2, 0, 0, 8}
+        };
+        int[][] finalBoard = new int[][]{
+                {8, 64, 2, 0},
+                {2, 8, 4, 0},
+                {4, 2, 16, 0},
+                {2, 8, 0, 0}
+        };
+        Game2048 tfe = new Game2048(initBoard);
+        tfe.changeBoard(Direction.LEFT);
+        assertArrayEquals(finalBoard, tfe.getBoardIntArray());
+    }
+
+    @Test
+    public void testChangeBoardLeft2() {
+        int[][] initBoard = new int[][]{
+                {0, 2, 16, 4},
+                {0, 4, 4, 4},
+                {0, 0, 2, 2},
+                {0, 0, 0, 0}
+        };
+        int[][] finalBoard = new int[][]{
+                {2, 16, 4, 0},
+                {8, 4, 0, 0},
+                {4, 0, 0, 0},
+                {0, 0, 0, 0}
+        };
+        Game2048 tfe = new Game2048(initBoard);
+        tfe.changeBoard(Direction.LEFT);
+        assertArrayEquals(finalBoard, tfe.getBoardIntArray());
+    }
+
+    @Test
+    public void testChangeBoardLeftNotPossible() {
+        int[][] initBoard = new int[][]{
+                {2, 16, 32, 2},
+                {4, 16, 8, 0},
+                {8, 64, 32, 4},
+                {4, 2, 8, 4}
+        };
+        int[][] finalBoard = new int[][]{
+                {2, 16, 32, 2},
+                {4, 16, 8, 0},
+                {8, 64, 32, 4},
+                {4, 2, 8, 4}
+        };
+        Game2048 tfe = new Game2048(initBoard);
+        tfe.changeBoard(Direction.LEFT);
+        assertArrayEquals(finalBoard, tfe.getBoardIntArray());
+    }
+
+    @Test
+    public void testChangeBoardRight1() {
+        int[][] initBoard = new int[][]{
+                {2, 2, 2, 0},
+                {4, 4, 4, 2},
+                {16, 8, 0, 0},
+                {4, 0, 0, 0}
+        };
+        int[][] finalBoard = new int[][]{
+                {0, 0, 2, 4},
+                {0, 4, 8, 2},
+                {0, 0, 16, 8},
+                {0, 0, 0, 4}
+        };
+        Game2048 tfe = new Game2048(initBoard);
+        tfe.changeBoard(Direction.RIGHT);
+        assertArrayEquals(finalBoard, tfe.getBoardIntArray());
+    }
+
+    @Test
+    public void testChangeBoardRight2() {
+        int[][] initBoard = new int[][]{
+                {0, 0, 0, 0},
+                {2, 2, 2, 2},
+                {4, 4, 4, 4},
+                {2, 16, 2, 2}
+        };
+        int[][] finalBoard = new int[][]{
+                {0, 0, 0, 0},
+                {0, 0, 4, 4},
+                {0, 0, 8, 8},
+                {0, 2, 16, 4}
+        };
+        Game2048 tfe = new Game2048(initBoard);
+        tfe.changeBoard(Direction.RIGHT);
+        assertArrayEquals(finalBoard, tfe.getBoardIntArray());
+    }
+
+    @Test
+    public void testChangeBoardRightNotPossible() {
+        int[][] initBoard = new int[][]{
+                {2, 8, 16, 4},
+                {0, 2, 4, 16},
+                {0, 2, 8, 16},
+                {0, 2, 4, 8}
+        };
+        int[][] finalBoard = new int[][]{
+                {2, 8, 16, 4},
+                {0, 2, 4, 16},
+                {0, 2, 8, 16},
+                {0, 2, 4, 8}
+        };
+        Game2048 tfe = new Game2048(initBoard);
+        tfe.changeBoard(Direction.RIGHT);
+        assertArrayEquals(finalBoard, tfe.getBoardIntArray());
+    }
+
+    @Test
+    public void testChangeBoardUp1() {
+        int[][] initBoard = new int[][]{
+                {0, 0, 2, 8},
+                {2, 4, 2, 16},
+                {16, 4, 8, 4},
+                {0, 8, 4, 4}
+        };
+        int[][] finalBoard = new int[][]{
+                {2, 8, 4, 8},
+                {16, 8, 8, 16},
+                {0, 0, 4, 8},
+                {0, 0, 0, 0}
+        };
+        Game2048 tfe = new Game2048(initBoard);
+        tfe.changeBoard(Direction.UP);
+        assertArrayEquals(finalBoard, tfe.getBoardIntArray());
+    }
+
+    @Test
+    public void testChangeBoardUp2() {
+        int[][] initBoard = new int[][]{
+                {0, 2, 0, 0},
+                {4, 2, 0, 0},
+                {4, 2, 4, 0},
+                {2, 16, 8, 4}
+        };
+        int[][] finalBoard = new int[][]{
+                {8, 4, 4, 4},
+                {2, 2, 8, 0},
+                {0, 16, 0, 0},
+                {0, 0, 0, 0}
+        };
+        Game2048 tfe = new Game2048(initBoard);
+        tfe.changeBoard(Direction.UP);
+        assertArrayEquals(finalBoard, tfe.getBoardIntArray());
+    }
+
+    @Test
+    public void testChangeBoardUpNotPossible() {
+        int[][] initBoard = new int[][]{
+                {16, 4, 8, 4},
+                {2, 8, 4, 2},
+                {4, 16, 2, 0},
+                {0, 0, 0, 0}
+        };
+        int[][] finalBoard = new int[][]{
+                {16, 4, 8, 4},
+                {2, 8, 4, 2},
+                {4, 16, 2, 0},
+                {0, 0, 0, 0}
+        };
+        Game2048 tfe = new Game2048(initBoard);
+        tfe.changeBoard(Direction.UP);
+        assertArrayEquals(finalBoard, tfe.getBoardIntArray());
+    }
+
+
 
 }

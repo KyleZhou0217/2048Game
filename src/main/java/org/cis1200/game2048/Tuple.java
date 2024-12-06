@@ -1,6 +1,6 @@
 package org.cis1200.game2048;
 
-public class Tuple <A,B>{
+public class Tuple <A,B> {
     private final A a;
     private final B b;
     public Tuple(A a, B b) {

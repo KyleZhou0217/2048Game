@@ -115,10 +115,25 @@ public class GameBoard extends JPanel {
         GameSaverLoader loader = new GameSaverLoader();
         if (number == 1) {
             tfe.setGameBoard(loader.loadGame("save1.txt"));
+            if (tfe.checkLoss()) {
+                status.setText("LOSS!");
+            } else if (tfe.checkWin()) {
+                status.setText("WIN!");
+            }
         } else if (number == 2) {
             tfe.setGameBoard(loader.loadGame("save2.txt"));
+            if (tfe.checkLoss()) {
+                status.setText("LOSS!");
+            } else if (tfe.checkWin()) {
+                status.setText("WIN!");
+            }
         } else if (number == 3) {
             tfe.setGameBoard(loader.loadGame("save3.txt"));
+            if (tfe.checkLoss()) {
+                status.setText("LOSS!");
+            } else if (tfe.checkWin()) {
+                status.setText("WIN!");
+            }
         }
         requestFocusInWindow();
     }

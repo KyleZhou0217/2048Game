@@ -88,3 +88,4 @@ PennKey: kylezhou
   while implementing your game.
 
   Got hex color codes of the squares corresponding the different values (2,4,8,16, etc) from online.
+

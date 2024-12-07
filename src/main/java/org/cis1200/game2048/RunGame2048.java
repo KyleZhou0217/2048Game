@@ -16,7 +16,7 @@ public class RunGame2048 implements Runnable {
         final JLabel status = new JLabel(
                 "<html>Instructions: <br><br>" +
                         "Objective: Combine blocks of same value through using" +
-                        " arrow keys and try to get a 2048 block. "
+                        " arrow keys and try to get a 2048 block before filling up the board."
                         +
                         "<br><br>"
                         +
@@ -26,7 +26,7 @@ public class RunGame2048 implements Runnable {
                         "that save, and click the corresponding " +
                         "save in game <br>"
                         +
-                        "to save the current board to that save slot. <br><br>" +
+                        "to save the current game to that save slot. <br><br>" +
                         "Reset button in game used for restarting the " +
                         "game, undo button has same feature as space " +
                         "bar.</html>"

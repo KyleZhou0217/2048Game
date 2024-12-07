@@ -371,7 +371,4 @@ public class Game2048 {
         return board;
     }
 
-    public static void main(String[] args) {
-
-    }
 }

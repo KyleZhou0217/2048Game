@@ -80,7 +80,7 @@ public class RunGame2048 implements Runnable {
         // status
         final JPanel status_panel = new JPanel();
         frame.add(status_panel, BorderLayout.SOUTH);
-        final JLabel status = new JLabel("Game in Progress");
+        final JLabel status = new JLabel("Score: " + board.getTfe().getScore());
         status_panel.add(status);
         board.setStatus(status);
         // Game board

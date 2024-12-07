@@ -64,12 +64,16 @@ public class GameBoard extends JPanel {
         this.status = status;
     }
 
+    public Game2048 getTfe() {
+        return tfe;
+    }
+
     /**
      * (Re-)sets the game to its initial state.
      */
     public void reset() {
         tfe.reset();
-        status.setText("Game in Progress");
+        status.setText("Score: " + tfe.getScore());
         repaint();
 
         // Makes sure this component has keyboard/mouse focus
@@ -78,7 +82,7 @@ public class GameBoard extends JPanel {
 
     public void undo() {
         tfe.undo();
-        status.setText("Game in Progress");
+        status.setText("Score: " + tfe.getScore());
         repaint();
         requestFocusInWindow();
     }
@@ -90,6 +94,7 @@ public class GameBoard extends JPanel {
             status.setText("LOSS!");
         } else {
             if (!tfe.checkBoardFull()) {
+                status.setText("Score: " + tfe.getScore());
                 tfe.spawnSquare();
                 if (tfe.checkLoss()) {
                     status.setText("LOSS!");
@@ -101,11 +106,11 @@ public class GameBoard extends JPanel {
     public void save(int number) {
         GameSaverLoader saver = new GameSaverLoader();
         if (number == 1) {
-            saver.saveGame("save1.txt", tfe.getGameBoard());
+            saver.saveGame("save1.txt", tfe.getGameBoard(), tfe.getScore());
         } else if (number == 2) {
-            saver.saveGame("save2.txt", tfe.getGameBoard());
+            saver.saveGame("save2.txt", tfe.getGameBoard(), tfe.getScore());
         } else if (number == 3) {
-            saver.saveGame("save3.txt", tfe.getGameBoard());
+            saver.saveGame("save3.txt", tfe.getGameBoard(), tfe.getScore());
         }
         requestFocusInWindow();
     }
@@ -113,21 +118,27 @@ public class GameBoard extends JPanel {
     public void load(int number) {
         GameSaverLoader loader = new GameSaverLoader();
         if (number == 1) {
-            tfe.setGameBoard(loader.loadGame("save1.txt"));
+            tfe.setGameBoard(loader.loadGame("save1.txt").getA());
+            tfe.setScore(loader.loadGame("save1.txt").getB());
+            status.setText("Score: " + tfe.getScore());
             if (tfe.checkLoss()) {
                 status.setText("LOSS!");
             } else if (tfe.checkWin()) {
                 status.setText("WIN!");
             }
         } else if (number == 2) {
-            tfe.setGameBoard(loader.loadGame("save2.txt"));
+            tfe.setGameBoard(loader.loadGame("save2.txt").getA());
+            tfe.setScore(loader.loadGame("save2.txt").getB());
+            status.setText("Score: " + tfe.getScore());
             if (tfe.checkLoss()) {
                 status.setText("LOSS!");
             } else if (tfe.checkWin()) {
                 status.setText("WIN!");
             }
         } else if (number == 3) {
-            tfe.setGameBoard(loader.loadGame("save3.txt"));
+            tfe.setGameBoard(loader.loadGame("save3.txt").getA());
+            tfe.setScore(loader.loadGame("save3.txt").getB());
+            status.setText("Score: " + tfe.getScore());
             if (tfe.checkLoss()) {
                 status.setText("LOSS!");
             } else if (tfe.checkWin()) {

@@ -6,7 +6,9 @@ import java.util.Random;
 public class Game2048 {
 
     private Square[][] gameBoard;
+    private Integer score;
     private LinkedList<Square[][]> boardVersions;
+    private LinkedList<Integer> scores;
 
     /**
      * Constructor sets up game state.
@@ -19,6 +21,8 @@ public class Game2048 {
     public Game2048(int[][] board) {
         gameBoard = new Square[4][4];
         boardVersions = new LinkedList<Square[][]>();
+        scores = new LinkedList<>();
+        score = 0;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 if (board[i][j] == 0) {
@@ -34,6 +38,14 @@ public class Game2048 {
 
     public Square[][] getGameBoard() {
         return gameBoard;
+    }
+
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
     }
 
     public void setGameBoard(Square[][] gameBoard) {
@@ -96,6 +108,7 @@ public class Game2048 {
     public void changeBoard(Direction d) {
         if (d == Direction.UP) {
             boardVersions.addFirst(deepCopy(gameBoard));
+            scores.addFirst(score);
             for (int j = 0; j < 4; j++) {
                 for (int i = 0; i < 3; i++) {
                     if (gameBoard[i][j] == null) {
@@ -115,6 +128,7 @@ public class Game2048 {
                 for (int i = 0; i < 3; i++) {
                     if (gameBoard[i][j] != null && gameBoard[i + 1][j] != null) {
                         if (gameBoard[i][j].getNumber() == gameBoard[i + 1][j].getNumber()) {
+                            score += gameBoard[i][j].getNumber() * 2;
                             gameBoard[i][j].setNumber(gameBoard[i][j].getNumber() * 2);
                             gameBoard[i + 1][j] = null;
                         }
@@ -138,6 +152,7 @@ public class Game2048 {
             }
         } else if (d == Direction.DOWN) {
             boardVersions.addFirst(deepCopy(gameBoard));
+            scores.addFirst(score);
             for (int j = 0; j < 4; j++) {
                 for (int i = 3; i > 0; i--) {
                     if (gameBoard[i][j] == null) {
@@ -157,6 +172,7 @@ public class Game2048 {
                 for (int i = 3; i > 0; i--) {
                     if (gameBoard[i][j] != null && gameBoard[i - 1][j] != null) {
                         if (gameBoard[i][j].getNumber() == gameBoard[i - 1][j].getNumber()) {
+                            score += gameBoard[i][j].getNumber() * 2;
                             gameBoard[i][j].setNumber(gameBoard[i][j].getNumber() * 2);
                             gameBoard[i - 1][j] = null;
                         }
@@ -180,6 +196,7 @@ public class Game2048 {
             }
         } else if (d == Direction.LEFT) {
             boardVersions.addFirst(deepCopy(gameBoard));
+            scores.addFirst(score);
             for (int j = 0; j < 4; j++) {
                 for (int i = 0; i < 3; i++) {
                     if (gameBoard[j][i] == null) {
@@ -199,6 +216,7 @@ public class Game2048 {
                 for (int i = 0; i < 3; i++) {
                     if (gameBoard[j][i] != null && gameBoard[j][i + 1] != null) {
                         if (gameBoard[j][i].getNumber() == gameBoard[j][i + 1].getNumber()) {
+                            score += gameBoard[j][i].getNumber() * 2;
                             gameBoard[j][i].setNumber(gameBoard[j][i].getNumber() * 2);
                             gameBoard[j][i + 1] = null;
                         }
@@ -222,6 +240,7 @@ public class Game2048 {
             }
         } else if (d == Direction.RIGHT) {
             boardVersions.addFirst(deepCopy(gameBoard));
+            scores.addFirst(score);
             for (int j = 0; j < 4; j++) {
                 for (int i = 3; i > 0; i--) {
                     if (gameBoard[j][i] == null) {
@@ -241,6 +260,7 @@ public class Game2048 {
                 for (int i = 3; i > 0; i--) {
                     if (gameBoard[j][i] != null && gameBoard[j][i - 1] != null) {
                         if (gameBoard[j][i].getNumber() == gameBoard[j][i - 1].getNumber()) {
+                            score += gameBoard[j][i].getNumber() * 2;
                             gameBoard[j][i].setNumber(gameBoard[j][i].getNumber() * 2);
                             gameBoard[j][i - 1] = null;
                         }
@@ -268,6 +288,8 @@ public class Game2048 {
     public void reset() {
         gameBoard = new Square[4][4];
         boardVersions = new LinkedList<Square[][]>();
+        scores = new LinkedList<>();
+        score = 0;
         for (int i = 0; i < 2; i++) {
             boolean done = false;
             while (!done) {
@@ -314,8 +336,9 @@ public class Game2048 {
     }
 
     public void undo() {
-        if (!boardVersions.isEmpty()) {
+        if (!boardVersions.isEmpty() && !scores.isEmpty()) {
             gameBoard = boardVersions.removeFirst();
+            score = scores.removeFirst();
         }
     }
 

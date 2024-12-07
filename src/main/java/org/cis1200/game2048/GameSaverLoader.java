@@ -4,7 +4,7 @@ import java.io.*;
 
 public class GameSaverLoader {
 
-    public void saveGame(String fileName, Square[][] board) {
+    public void saveGame(String fileName, Square[][] board, Integer score) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 3; j++) {
@@ -21,14 +21,16 @@ public class GameSaverLoader {
                 }
                 writer.newLine();
             }
+            writer.write(score + "");
             writer.flush();
         } catch (IOException e) {
             throw new IllegalArgumentException("File does not exist");
         }
     }
 
-    public Square[][] loadGame(String fileName) {
+    public Tuple<Square[][], Integer> loadGame(String fileName) {
         Square[][] board = new Square[4][4];
+        Integer score;
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             for (int i = 0; i < 4; i++) {
                 String line = reader.readLine();
@@ -43,10 +45,11 @@ public class GameSaverLoader {
                     }
                 }
             }
+            score = Integer.parseInt(reader.readLine());
         } catch (IOException e) {
             throw new IllegalArgumentException("File does not exist");
         }
-        return board;
+        return new Tuple<>(board, score);
     }
 
 }

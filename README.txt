@@ -64,10 +64,20 @@ PennKey: kylezhou
 - Were there any significant stumbling blocks while you were implementing your
   game (related to your design, or otherwise)?
 
+  Implementing the logic of sliding and merging Squares was a challenging since there were many different cases to
+  consider and many times my implementation wouldn't merge or slide the Squares correctly for a specific edge case.
+
 
 - Evaluate your design. Is there a good separation of functionality? How well is
   private state encapsulated? What would you refactor, if given the chance?
 
+  I think overall for my design there is a good separation of functionality between the actual game logic and
+  drawing/updating the board in the GUI. My private states are encapsulated within each class so that other classes
+  cannot break invariants I've decided within each class. Something I would refactor would be my changeBoard method
+  in Game2048 which handles the merging of the cells since I think there is a lot of copy-pasted code and overall
+  the method could be implemented better if we could add a viewing perspective on the board so the changeBoard method
+  wouldn't have to consider all directions of movement with slight variations in for loop logic to iterate through the
+  board.
 
 
 ========================
@@ -76,3 +86,5 @@ PennKey: kylezhou
 
 - Cite any external resources (images, tutorials, etc.) that you may have used 
   while implementing your game.
+
+  Got hex color codes of the squares corresponding the different values (2,4,8,16, etc) from online.
